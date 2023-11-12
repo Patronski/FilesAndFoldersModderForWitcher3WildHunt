@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FilesAndFolders.Properties {
+namespace Modpackinstaller.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace FilesAndFolders.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FilesAndFolders.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Modpackinstaller.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -66,16 +66,6 @@ namespace FilesAndFolders.Properties {
         internal static System.Drawing.Bitmap OneDrive_Folder_Icon {
             get {
                 object obj = ResourceManager.GetObject("OneDrive_Folder_Icon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap OneDrive_Folder_Icon_svg {
-            get {
-                object obj = ResourceManager.GetObject("OneDrive_Folder_Icon.svg", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

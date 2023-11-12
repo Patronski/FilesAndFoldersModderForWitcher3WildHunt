@@ -1,14 +1,7 @@
-﻿using DriveV3Snippets;
+﻿
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FilesAndFolders
@@ -20,20 +13,46 @@ namespace FilesAndFolders
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Start button
+        /// </summary>
         private void button1_Click(object sender, EventArgs e)
         {
-            var confirmResult = MessageBox.Show("Are you sure you want to continue?",
-                                     "Confirm!",
-                                     MessageBoxButtons.YesNo);
-            if (confirmResult == DialogResult.Yes)
+            if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "")
             {
-                Megaupload.DownloadFolder(this.textBox1.Text, richTextBox1);
+                MessageBox.Show("Fill all missing directories correctly!", "Confirm!", MessageBoxButtons.OK);
             }
+            else
+            {
+                var checkResult = CheckDirectoriesAreFilledCorrectly();
+                if (checkResult != "")
+                {
+                    MessageBox.Show(checkResult, "Confirm!", MessageBoxButtons.OK);
+                    return;
+                }
+
+                var confirmResult = MessageBox.Show("Are you sure you want to continue?", "Confirm!", MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    Megaupload.DownloadFolder(this.textBox1.Text, this.textBox2.Text, textBox3.Text, richTextBox1);
+                }
+            }
+        }
+
+        private string CheckDirectoriesAreFilledCorrectly()
+        {
+            var startingFileOfWitcher3 = textBox1.Text + @"\bin\x64\witcher3.exe";
+            if (!File.Exists(startingFileOfWitcher3))
+            {
+                return $"Wrong path to you Witcher 3 game!";
+            }
+
+            return "";
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            Size = new Size(477, 500);
         }
 
         private void buttonChooseFolder_Click(object sender, EventArgs e)
@@ -54,6 +73,36 @@ namespace FilesAndFolders
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+
+
+            {
+                textBox2.Text = dialog.SelectedPath;
+            }
+            else
+            {
+                textBox2.Text = "";
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+
+
+            {
+                textBox3.Text = dialog.SelectedPath;
+            }
+            else
+            {
+                textBox3.Text = "";
+            }
         }
     }
 }
