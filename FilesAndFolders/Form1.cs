@@ -1,4 +1,5 @@
 ﻿
+using Modpackinstaller.Properties;
 using System;
 using System.Drawing;
 using System.IO;
@@ -20,7 +21,7 @@ namespace FilesAndFolders
         {
             if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "")
             {
-                MessageBox.Show("Fill all missing directories correctly!", "Confirm!", MessageBoxButtons.OK);
+                MessageBox.Show("Fill in all missing directories correctly!", "Confirm!", MessageBoxButtons.OK);
             }
             else
             {
@@ -34,7 +35,8 @@ namespace FilesAndFolders
                 var confirmResult = MessageBox.Show("Are you sure you want to continue?", "Confirm!", MessageBoxButtons.YesNo);
                 if (confirmResult == DialogResult.Yes)
                 {
-                    Megaupload.DownloadFolder(this.textBox1.Text, this.textBox2.Text, textBox3.Text, richTextBox1);
+                    File.WriteAllText("saveDownloadUri", textBox4.Text);
+                    Megaupload.DownloadFolder(this.textBox1.Text, this.textBox2.Text, textBox3.Text, textBox4.Text, richTextBox1);
                 }
             }
         }
@@ -52,7 +54,11 @@ namespace FilesAndFolders
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Size = new Size(477, 500);
+            Size = new Size(477, 543);
+            if (File.Exists("saveDownloadUri"))
+            {
+                textBox4.Text = File.ReadAllText("saveDownloadUri");
+            }
         }
 
         private void buttonChooseFolder_Click(object sender, EventArgs e)
@@ -68,11 +74,6 @@ namespace FilesAndFolders
             {
                 textBox1.Text = "";
             }
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button3_Click(object sender, EventArgs e)

@@ -28,15 +28,15 @@ namespace FilesAndFolders
             mega.DownloadFile(myFile, downloadPath);
         }
 
-        public static void DownloadFolder(string gameDirectory, string downloadFolder, string documentsDirectory, RichTextBox reportBox)
+        public static void DownloadFolder(string gameDirectory, string downloadFolder, string documentsDirectory, string urlMega, RichTextBox reportBox)
         {
             try
             {
                 MegaApiClient client = new MegaApiClient();
                 client.LoginAnonymous();
-                reportBox.Text += Environment.NewLine + "Connected to the host";
+                reportBox.Text += Environment.NewLine + "Connecting to the host ...";
 
-                Uri folderLink = new Uri(@"https://mega.nz/folder/jBVmXRTB#T10xQsr3QRGccbmKCcDs5w");
+                Uri folderLink = new Uri(urlMega);
                 IEnumerable<INode> nodes = client.GetNodesFromLink(folderLink);
                 reportBox.Text += Environment.NewLine + "received information";
 
@@ -63,8 +63,6 @@ namespace FilesAndFolders
             catch(Exception ex)
             {
                 reportBox.Text += Environment.NewLine + "Error: " + ex.Message;
-                reportBox.Text += Environment.NewLine + "Please choose valid directory";
-
             }
         }
 
