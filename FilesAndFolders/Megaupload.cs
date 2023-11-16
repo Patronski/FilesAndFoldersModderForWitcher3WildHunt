@@ -14,30 +14,16 @@ namespace FilesAndFolders
         public const string user = "donstz@yahoo.com";
         public const string key = "5iTGba9EYEPaRG9vIgiGwQ";
 
-        public const string FileToSaveInDocumentsFolder = "TW3 Settings.zip";
-
-        public static void DownloadFile(string downloadPath)
-        {
-            MegaApiClient mega = new MegaApiClient();
-            mega.Login(user, pass);
-
-            IEnumerable<INode> nodes = mega.GetNodes();
-            List<INode> allFiles = nodes.Where(n => n.Type == NodeType.File).ToList();
-            INode myFile = allFiles.FirstOrDefault();
-
-            mega.DownloadFile(myFile, downloadPath);
-        }
-
-        public static void DownloadFolder(string gameDirectory, string downloadFolder, string documentsDirectory, string urlMega, RichTextBox reportBox)
+        public static void DownloadFolder(string downloadFolder, string urlMega, RichTextBox reportBox)
         {
             try
             {
-                MegaApiClient client = new MegaApiClient();
-                client.LoginAnonymous();
+                MegaApiClient mega = new MegaApiClient();
+                mega.LoginAnonymous();
                 reportBox.Text += Environment.NewLine + "Connecting to the host ...";
 
                 Uri folderLink = new Uri(urlMega);
-                IEnumerable<INode> nodes = client.GetNodesFromLink(folderLink);
+                IEnumerable<INode> nodes = mega.GetNodesFromLink(folderLink);
                 reportBox.Text += Environment.NewLine + "received information";
 
                 foreach (INode node in nodes.Where(x => x.Type == NodeType.File))
@@ -50,46 +36,16 @@ namespace FilesAndFolders
                     var downloadedFile = Path.Combine(downloadSubFolder, node.Name);
                     if (!File.Exists(downloadedFile))
                     {
-                        client.DownloadFile(node, downloadedFile);
+                        mega.DownloadFile(node, downloadedFile);
                         reportBox.Text += Environment.NewLine + $"downloaded file - {node.Name}";
                     }
-
-                    ExtractZipFile(gameDirectory, documentsDirectory, reportBox, node, downloadedFile);
                 }
 
-                client.Logout();
-                reportBox.Text += Environment.NewLine + $"The installation process is complete!";
+                mega.Logout();
             }
             catch(Exception ex)
             {
                 reportBox.Text += Environment.NewLine + "Error: " + ex.Message;
-            }
-        }
-
-        private static void ExtractZipFile(string gameDirectory, string documentsDirectory, RichTextBox reportBox, INode node, string downloadedFile)
-        {
-            using (ZipArchive source = ZipFile.Open(downloadedFile, ZipArchiveMode.Read, null))
-            {
-                string extractDirectory; ;
-                if (node.Name == FileToSaveInDocumentsFolder)
-                {
-                    extractDirectory = documentsDirectory;
-                }
-                else
-                {
-                    extractDirectory = gameDirectory;
-                }
-                foreach (ZipArchiveEntry entry in source.Entries)
-                {
-                    string fullPath = Path.GetFullPath(Path.Combine(extractDirectory, entry.FullName));
-
-                    if (Path.GetFileName(fullPath).Length != 0)
-                    {
-                        Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
-                        entry.ExtractToFile(fullPath, true);
-                    }
-                }
-                reportBox.Text += Environment.NewLine + $"extracted - {node.Name}";
             }
         }
 

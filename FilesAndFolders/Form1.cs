@@ -1,5 +1,5 @@
 ﻿
-using Modpackinstaller.Properties;
+using Modpackinstaller;
 using System;
 using System.Drawing;
 using System.IO;
@@ -17,11 +17,11 @@ namespace FilesAndFolders
         /// <summary>
         /// Start button
         /// </summary>
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonStart_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "")
+            if (textBoxGameDirectory.Text == "" || textBoxDownloadDirectory.Text == "" || textBoxDocumentsDirectory.Text == "")
             {
-                MessageBox.Show("Fill in all missing directories correctly!", "Confirm!", MessageBoxButtons.OK);
+                MessageBox.Show("Fill in all missing fields correctly!", "Confirm!", MessageBoxButtons.OK);
             }
             else
             {
@@ -35,15 +35,35 @@ namespace FilesAndFolders
                 var confirmResult = MessageBox.Show("Are you sure you want to continue?", "Confirm!", MessageBoxButtons.YesNo);
                 if (confirmResult == DialogResult.Yes)
                 {
-                    File.WriteAllText("saveDownloadUri", textBox4.Text);
-                    Megaupload.DownloadFolder(this.textBox1.Text, this.textBox2.Text, textBox3.Text, textBox4.Text, richTextBox1);
+                    File.WriteAllText("saveDownloadUri", textBoxUrl.Text);
+
+                    // downloading files from Mega to download directory
+                    Megaupload.DownloadFolder(textBoxDownloadDirectory.Text, textBoxUrl.Text, richTextBox1);
+
+                    var dir = new DirectoryInfo(textBoxDownloadDirectory.Text);
+                    var files = dir.GetFiles("*", SearchOption.AllDirectories);
+
+                    // extracting files to game directory
+                    foreach (var file in files)
+                    {
+                        if (file.Extension == ".zip")
+                        {
+                            var zipExtractor = new ZipExtractor(textBoxGameDirectory.Text, textBoxDocumentsDirectory.Text, richTextBox1);
+                            zipExtractor.ExtractZipFile(file.Name, file.FullName);
+                        }
+                    }
+
+                    // adding game directory to WitcherScriptMerger.exe.config
+                    FileModificator.ModifyWitcherScriptMerger(textBoxGameDirectory.Text);
+
+                    richTextBox1.Text += Environment.NewLine + $"The installation process is complete!";
                 }
             }
         }
 
         private string CheckDirectoriesAreFilledCorrectly()
         {
-            var startingFileOfWitcher3 = textBox1.Text + @"\bin\x64\witcher3.exe";
+            var startingFileOfWitcher3 = textBoxGameDirectory.Text + @"\bin\x64\witcher3.exe";
             if (!File.Exists(startingFileOfWitcher3))
             {
                 return $"Wrong path to you Witcher 3 game!";
@@ -57,52 +77,35 @@ namespace FilesAndFolders
             Size = new Size(477, 543);
             if (File.Exists("saveDownloadUri"))
             {
-                textBox4.Text = File.ReadAllText("saveDownloadUri");
+                textBoxUrl.Text = File.ReadAllText("saveDownloadUri");
             }
         }
 
-        private void buttonChooseFolder_Click(object sender, EventArgs e)
+        private void buttonDownloadDirectory_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            
-            
-            {
-                textBox1.Text = dialog.SelectedPath;
-            }
-            else
-            {
-                textBox1.Text = "";
-            }
+            setFolderToTextBox(textBoxDownloadDirectory);
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void buttonGameDIrectory_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-
-
-            {
-                textBox2.Text = dialog.SelectedPath;
-            }
-            else
-            {
-                textBox2.Text = "";
-            }
+            setFolderToTextBox(textBoxGameDirectory);
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void buttonDocumentsDirectory_Click(object sender, EventArgs e)
+        {
+            setFolderToTextBox(textBoxDocumentsDirectory);
+        }
+
+        private void setFolderToTextBox(TextBox textBox)
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-
-
             {
-                textBox3.Text = dialog.SelectedPath;
+                textBox.Text = dialog.SelectedPath;
             }
             else
             {
-                textBox3.Text = "";
+                textBox.Text = "";
             }
         }
     }

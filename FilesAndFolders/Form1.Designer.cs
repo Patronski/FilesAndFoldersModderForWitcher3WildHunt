@@ -30,52 +30,52 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonStart = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxGameDirectory = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonInfo = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxDownloadDirectory = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBoxDocumentsDirectory = new System.Windows.Forms.TextBox();
+            this.textBoxUrl = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.buttonChooseFolder = new System.Windows.Forms.Button();
+            this.buttonDocumentsDirectory = new System.Windows.Forms.Button();
+            this.buttonDownloadDirectory = new System.Windows.Forms.Button();
+            this.buttonGameDIrectory = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // buttonStart
             // 
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(340, 453);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(80, 25);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "START";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonStart.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonStart.Location = new System.Drawing.Point(340, 453);
+            this.buttonStart.Name = "buttonStart";
+            this.buttonStart.Size = new System.Drawing.Size(80, 25);
+            this.buttonStart.TabIndex = 0;
+            this.buttonStart.Text = "START";
+            this.buttonStart.UseVisualStyleBackColor = true;
+            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
             // 
             // fileSystemWatcher1
             // 
             this.fileSystemWatcher1.EnableRaisingEvents = true;
             this.fileSystemWatcher1.SynchronizingObject = this;
             // 
-            // textBox1
+            // textBoxGameDirectory
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(45, 143);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(340, 20);
-            this.textBox1.TabIndex = 5;
+            this.textBoxGameDirectory.Enabled = false;
+            this.textBoxGameDirectory.Location = new System.Drawing.Point(45, 143);
+            this.textBoxGameDirectory.Name = "textBoxGameDirectory";
+            this.textBoxGameDirectory.Size = new System.Drawing.Size(340, 20);
+            this.textBoxGameDirectory.TabIndex = 5;
             // 
             // label1
             // 
@@ -92,17 +92,17 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // button2
+            // buttonInfo
             // 
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(45, 453);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(80, 25);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "INFO";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonInfo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonInfo.Location = new System.Drawing.Point(45, 453);
+            this.buttonInfo.Name = "buttonInfo";
+            this.buttonInfo.Size = new System.Drawing.Size(80, 25);
+            this.buttonInfo.TabIndex = 13;
+            this.buttonInfo.Text = "INFO";
+            this.buttonInfo.UseVisualStyleBackColor = true;
             // 
             // richTextBox1
             // 
@@ -113,13 +113,13 @@
             this.richTextBox1.TabIndex = 14;
             this.richTextBox1.Text = "";
             // 
-            // textBox2
+            // textBoxDownloadDirectory
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(45, 90);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(340, 20);
-            this.textBox2.TabIndex = 15;
+            this.textBoxDownloadDirectory.Enabled = false;
+            this.textBoxDownloadDirectory.Location = new System.Drawing.Point(45, 90);
+            this.textBoxDownloadDirectory.Name = "textBoxDownloadDirectory";
+            this.textBoxDownloadDirectory.Size = new System.Drawing.Size(340, 20);
+            this.textBoxDownloadDirectory.TabIndex = 15;
             // 
             // label4
             // 
@@ -127,9 +127,9 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.Location = new System.Drawing.Point(42, 72);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(247, 15);
+            this.label4.Size = new System.Drawing.Size(194, 15);
             this.label4.TabIndex = 17;
-            this.label4.Text = "Choose the path to download the Mod Pack:";
+            this.label4.Text = "Where to download the Mod Pack:";
             // 
             // label3
             // 
@@ -137,24 +137,24 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.Location = new System.Drawing.Point(42, 177);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(238, 15);
+            this.label3.Size = new System.Drawing.Size(197, 15);
             this.label3.TabIndex = 21;
-            this.label3.Text = "Choose the path to your Documents folder:";
+            this.label3.Text = "Navigate to your Documents folder:";
             // 
-            // textBox3
+            // textBoxDocumentsDirectory
             // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(45, 195);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(340, 20);
-            this.textBox3.TabIndex = 19;
+            this.textBoxDocumentsDirectory.Enabled = false;
+            this.textBoxDocumentsDirectory.Location = new System.Drawing.Point(45, 195);
+            this.textBoxDocumentsDirectory.Name = "textBoxDocumentsDirectory";
+            this.textBoxDocumentsDirectory.Size = new System.Drawing.Size(340, 20);
+            this.textBoxDocumentsDirectory.TabIndex = 19;
             // 
-            // textBox4
+            // textBoxUrl
             // 
-            this.textBox4.Location = new System.Drawing.Point(45, 39);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(340, 20);
-            this.textBox4.TabIndex = 22;
+            this.textBoxUrl.Location = new System.Drawing.Point(45, 39);
+            this.textBoxUrl.Name = "textBoxUrl";
+            this.textBoxUrl.Size = new System.Drawing.Size(340, 20);
+            this.textBoxUrl.TabIndex = 22;
             // 
             // label5
             // 
@@ -176,41 +176,41 @@
             this.label6.TabIndex = 24;
             this.label6.Text = "Action Log:";
             // 
-            // button4
+            // buttonDocumentsDirectory
             // 
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.Location = new System.Drawing.Point(391, 191);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(29, 27);
-            this.button4.TabIndex = 20;
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.buttonDocumentsDirectory.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonDocumentsDirectory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDocumentsDirectory.Image = ((System.Drawing.Image)(resources.GetObject("buttonDocumentsDirectory.Image")));
+            this.buttonDocumentsDirectory.Location = new System.Drawing.Point(391, 191);
+            this.buttonDocumentsDirectory.Name = "buttonDocumentsDirectory";
+            this.buttonDocumentsDirectory.Size = new System.Drawing.Size(29, 27);
+            this.buttonDocumentsDirectory.TabIndex = 20;
+            this.buttonDocumentsDirectory.UseVisualStyleBackColor = true;
+            this.buttonDocumentsDirectory.Click += new System.EventHandler(this.buttonDocumentsDirectory_Click);
             // 
-            // button3
+            // buttonDownloadDirectory
             // 
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(391, 86);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(29, 27);
-            this.button3.TabIndex = 16;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.buttonDownloadDirectory.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonDownloadDirectory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDownloadDirectory.Image = ((System.Drawing.Image)(resources.GetObject("buttonDownloadDirectory.Image")));
+            this.buttonDownloadDirectory.Location = new System.Drawing.Point(391, 86);
+            this.buttonDownloadDirectory.Name = "buttonDownloadDirectory";
+            this.buttonDownloadDirectory.Size = new System.Drawing.Size(29, 27);
+            this.buttonDownloadDirectory.TabIndex = 16;
+            this.buttonDownloadDirectory.UseVisualStyleBackColor = true;
+            this.buttonDownloadDirectory.Click += new System.EventHandler(this.buttonDownloadDirectory_Click);
             // 
-            // buttonChooseFolder
+            // buttonGameDIrectory
             // 
-            this.buttonChooseFolder.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonChooseFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonChooseFolder.Image = ((System.Drawing.Image)(resources.GetObject("buttonChooseFolder.Image")));
-            this.buttonChooseFolder.Location = new System.Drawing.Point(391, 139);
-            this.buttonChooseFolder.Name = "buttonChooseFolder";
-            this.buttonChooseFolder.Size = new System.Drawing.Size(29, 27);
-            this.buttonChooseFolder.TabIndex = 4;
-            this.buttonChooseFolder.UseVisualStyleBackColor = true;
-            this.buttonChooseFolder.Click += new System.EventHandler(this.buttonChooseFolder_Click);
+            this.buttonGameDIrectory.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonGameDIrectory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonGameDIrectory.Image = ((System.Drawing.Image)(resources.GetObject("buttonGameDIrectory.Image")));
+            this.buttonGameDIrectory.Location = new System.Drawing.Point(391, 139);
+            this.buttonGameDIrectory.Name = "buttonGameDIrectory";
+            this.buttonGameDIrectory.Size = new System.Drawing.Size(29, 27);
+            this.buttonGameDIrectory.TabIndex = 4;
+            this.buttonGameDIrectory.UseVisualStyleBackColor = true;
+            this.buttonGameDIrectory.Click += new System.EventHandler(this.buttonGameDIrectory_Click);
             // 
             // Form1
             // 
@@ -220,19 +220,19 @@
             this.ClientSize = new System.Drawing.Size(461, 504);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.textBoxUrl);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.buttonDocumentsDirectory);
+            this.Controls.Add(this.textBoxDocumentsDirectory);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.buttonDownloadDirectory);
+            this.Controls.Add(this.textBoxDownloadDirectory);
             this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.buttonInfo);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.buttonChooseFolder);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.textBoxGameDirectory);
+            this.Controls.Add(this.buttonGameDIrectory);
+            this.Controls.Add(this.buttonStart);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -247,23 +247,23 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.IO.FileSystemWatcher fileSystemWatcher1;
-        private System.Windows.Forms.Button buttonChooseFolder;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button buttonGameDIrectory;
+        private System.Windows.Forms.TextBox textBoxGameDirectory;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonInfo;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button buttonDownloadDirectory;
+        private System.Windows.Forms.TextBox textBoxDownloadDirectory;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button buttonDocumentsDirectory;
+        private System.Windows.Forms.TextBox textBoxDocumentsDirectory;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBoxUrl;
         private System.Windows.Forms.Label label6;
     }
 }
