@@ -112,6 +112,7 @@
             this.richTextReport.Size = new System.Drawing.Size(375, 169);
             this.richTextReport.TabIndex = 14;
             this.richTextReport.Text = "";
+            this.richTextReport.TextChanged += new System.EventHandler(this.richTextReport_TextChanged);
             // 
             // textBoxDownloadDirectory
             // 

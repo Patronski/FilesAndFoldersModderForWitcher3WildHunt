@@ -20,6 +20,13 @@ namespace FilesAndFolders
         /// </summary>
         private async void buttonStart_Click(object sender, EventArgs e)
         {
+            buttonDocumentsDirectory.Enabled = false;
+            buttonDownloadDirectory.Enabled = false;
+            buttonGameDIrectory.Enabled = false;
+            textBoxUrl.Enabled = false;
+            buttonStart.Enabled = false;
+
+
             try
             {
                 if (textBoxGameDirectory.Text == "" || textBoxDownloadDirectory.Text == "" || textBoxDocumentsDirectory.Text == "")
@@ -39,9 +46,12 @@ namespace FilesAndFolders
                     if (confirmResult == DialogResult.Yes)
                     {
                         // downloading files from Mega to download directory
-                        await Megaupload.DownloadFolderAsync(textBoxDownloadDirectory.Text, textBoxUrl.Text, richTextReport);
+                        richTextReport.Text += Environment.NewLine + $"Starting download from Mega.";
+                        var result = await Megaupload.DownloadFolderAsync(textBoxDownloadDirectory.Text, textBoxUrl.Text, richTextReport);
+                        if (!result) { return; }
 
-                        var dir = new DirectoryInfo(textBoxDownloadDirectory.Text);
+                        richTextReport.Text += Environment.NewLine + $"Starting to extract files in game directory.";
+                        var dir = new DirectoryInfo(Path.Combine(textBoxDownloadDirectory.Text, "MOD PACK"));
                         var files = dir.GetFiles("*", SearchOption.AllDirectories);
 
                         // extracting files to game directory
@@ -61,11 +71,18 @@ namespace FilesAndFolders
                     }
                 }
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 richTextReport.Text += Environment.NewLine + $"Unexpected error: {exception.Message}";
             }
-            
+            finally
+            {
+                buttonDocumentsDirectory.Enabled = true;
+                buttonDownloadDirectory.Enabled = true;
+                buttonGameDIrectory.Enabled = true;
+                textBoxUrl.Enabled = true;
+                buttonStart.Enabled = true;
+            }
         }
 
         private string CheckDirectoriesAreFilledCorrectly()
@@ -119,6 +136,14 @@ namespace FilesAndFolders
         private void textBoxUrl_TextChanged(object sender, EventArgs e)
         {
             File.WriteAllText("saveDownloadUri", textBoxUrl.Text);
+        }
+
+        private void richTextReport_TextChanged(object sender, EventArgs e)
+        {
+            // set the current caret position to the end
+            richTextReport.SelectionStart = richTextReport.Text.Length;
+            // scroll it automatically
+            richTextReport.ScrollToCaret();
         }
     }
 }

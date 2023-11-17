@@ -15,7 +15,7 @@ namespace FilesAndFolders
         public const string user = "donstz@yahoo.com";
         public const string key = "5iTGba9EYEPaRG9vIgiGwQ";
 
-        public static async Task DownloadFolderAsync(string downloadFolder, string urlMega, RichTextBox reportBox)
+        public static async Task<bool> DownloadFolderAsync(string downloadFolder, string urlMega, RichTextBox reportBox)
         {
             try
             {
@@ -24,12 +24,13 @@ namespace FilesAndFolders
                 reportBox.Text += Environment.NewLine + "Connecting to the host ...";
 
                 Uri folderLink = new Uri(urlMega);
+
                 IEnumerable<INode> nodes = mega.GetNodesFromLink(folderLink);
                 reportBox.Text += Environment.NewLine + "received information";
 
                 foreach (INode node in nodes.Where(x => x.Type == NodeType.File))
                 {
-                    string parents = GetParents(node, nodes);
+                    string parents = await GetParents(node, nodes);
                     var downloadSubFolder = downloadFolder + "\\" + parents;
                     Directory.CreateDirectory(downloadSubFolder);
                     Console.WriteLine($"Downloading {downloadSubFolder}\\{node.Name}");
@@ -43,15 +44,23 @@ namespace FilesAndFolders
                 }
 
                 await mega.LogoutAsync();
+                return true;
+            }
+            catch(FormatException ex)
+            {
+                reportBox.Text += Environment.NewLine + "Error: Url is not correct!";
+                return false;
             }
             catch(Exception ex)
             {
                 reportBox.Text += Environment.NewLine + "Error: " + ex.Message;
+                return false;
             }
         }
 
-        private static string GetParents(INode node, IEnumerable<INode> nodes)
+        private static async Task<string> GetParents(INode node, IEnumerable<INode> nodes)
         {
+
             List<string> parents = new List<string>();
             while (node.ParentId != null)
             {
