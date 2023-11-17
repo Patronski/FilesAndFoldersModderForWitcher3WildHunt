@@ -37,7 +37,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.buttonInfo = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextReport = new System.Windows.Forms.RichTextBox();
             this.textBoxDownloadDirectory = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -106,12 +106,12 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.richTextBox1.Location = new System.Drawing.Point(45, 253);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(375, 169);
-            this.richTextBox1.TabIndex = 14;
-            this.richTextBox1.Text = "";
+            this.richTextReport.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.richTextReport.Location = new System.Drawing.Point(45, 253);
+            this.richTextReport.Name = "richTextBox1";
+            this.richTextReport.Size = new System.Drawing.Size(375, 169);
+            this.richTextReport.TabIndex = 14;
+            this.richTextReport.Text = "";
             // 
             // textBoxDownloadDirectory
             // 
@@ -227,7 +227,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.buttonDownloadDirectory);
             this.Controls.Add(this.textBoxDownloadDirectory);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.richTextReport);
             this.Controls.Add(this.buttonInfo);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxGameDirectory);
@@ -255,7 +255,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Button buttonInfo;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextReport;
         private System.Windows.Forms.Button buttonDownloadDirectory;
         private System.Windows.Forms.TextBox textBoxDownloadDirectory;
         private System.Windows.Forms.Label label4;

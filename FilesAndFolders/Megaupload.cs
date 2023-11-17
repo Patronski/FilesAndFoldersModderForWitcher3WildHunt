@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FilesAndFolders
@@ -14,12 +15,12 @@ namespace FilesAndFolders
         public const string user = "donstz@yahoo.com";
         public const string key = "5iTGba9EYEPaRG9vIgiGwQ";
 
-        public static void DownloadFolder(string downloadFolder, string urlMega, RichTextBox reportBox)
+        public static async Task DownloadFolderAsync(string downloadFolder, string urlMega, RichTextBox reportBox)
         {
             try
             {
                 MegaApiClient mega = new MegaApiClient();
-                mega.LoginAnonymous();
+                await mega.LoginAnonymousAsync();
                 reportBox.Text += Environment.NewLine + "Connecting to the host ...";
 
                 Uri folderLink = new Uri(urlMega);
@@ -36,12 +37,12 @@ namespace FilesAndFolders
                     var downloadedFile = Path.Combine(downloadSubFolder, node.Name);
                     if (!File.Exists(downloadedFile))
                     {
-                        mega.DownloadFile(node, downloadedFile);
+                        await mega.DownloadFileAsync(node, downloadedFile);
                         reportBox.Text += Environment.NewLine + $"downloaded file - {node.Name}";
                     }
                 }
 
-                mega.Logout();
+                await mega.LogoutAsync();
             }
             catch(Exception ex)
             {

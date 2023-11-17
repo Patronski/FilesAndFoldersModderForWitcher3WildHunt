@@ -3,6 +3,7 @@ using Modpackinstaller;
 using System;
 using System.Drawing;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FilesAndFolders
@@ -17,7 +18,7 @@ namespace FilesAndFolders
         /// <summary>
         /// Start button
         /// </summary>
-        private void buttonStart_Click(object sender, EventArgs e)
+        private async void buttonStart_Click(object sender, EventArgs e)
         {
             if (textBoxGameDirectory.Text == "" || textBoxDownloadDirectory.Text == "" || textBoxDocumentsDirectory.Text == "")
             {
@@ -29,7 +30,7 @@ namespace FilesAndFolders
                 if (checkResult != "")
                 {
                     MessageBox.Show(checkResult, "Confirm!", MessageBoxButtons.OK);
-                    return;
+                    //return;
                 }
 
                 var confirmResult = MessageBox.Show("Are you sure you want to continue?", "Confirm!", MessageBoxButtons.YesNo);
@@ -38,7 +39,7 @@ namespace FilesAndFolders
                     File.WriteAllText("saveDownloadUri", textBoxUrl.Text);
 
                     // downloading files from Mega to download directory
-                    Megaupload.DownloadFolder(textBoxDownloadDirectory.Text, textBoxUrl.Text, richTextBox1);
+                    await Megaupload.DownloadFolderAsync(textBoxDownloadDirectory.Text, textBoxUrl.Text, richTextReport);
 
                     var dir = new DirectoryInfo(textBoxDownloadDirectory.Text);
                     var files = dir.GetFiles("*", SearchOption.AllDirectories);
@@ -48,15 +49,15 @@ namespace FilesAndFolders
                     {
                         if (file.Extension == ".zip")
                         {
-                            var zipExtractor = new ZipExtractor(textBoxGameDirectory.Text, textBoxDocumentsDirectory.Text, richTextBox1);
+                            var zipExtractor = new ZipExtractor(textBoxGameDirectory.Text, textBoxDocumentsDirectory.Text, richTextReport);
                             zipExtractor.ExtractZipFile(file.Name, file.FullName);
                         }
                     }
 
                     // adding game directory to WitcherScriptMerger.exe.config
-                    FileModificator.ModifyWitcherScriptMerger(textBoxGameDirectory.Text);
+                    FileModificator.ModifyWitcherScriptMerger(textBoxGameDirectory.Text, richTextReport);
 
-                    richTextBox1.Text += Environment.NewLine + $"The installation process is complete!";
+                    richTextReport.Text += Environment.NewLine + $"The installation process is complete!";
                 }
             }
         }
