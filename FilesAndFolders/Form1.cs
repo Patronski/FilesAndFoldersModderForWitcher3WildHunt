@@ -20,46 +20,52 @@ namespace FilesAndFolders
         /// </summary>
         private async void buttonStart_Click(object sender, EventArgs e)
         {
-            if (textBoxGameDirectory.Text == "" || textBoxDownloadDirectory.Text == "" || textBoxDocumentsDirectory.Text == "")
+            try
             {
-                MessageBox.Show("Fill in all missing fields correctly!", "Confirm!", MessageBoxButtons.OK);
-            }
-            else
-            {
-                var checkResult = CheckDirectoriesAreFilledCorrectly();
-                if (checkResult != "")
+                if (textBoxGameDirectory.Text == "" || textBoxDownloadDirectory.Text == "" || textBoxDocumentsDirectory.Text == "")
                 {
-                    MessageBox.Show(checkResult, "Confirm!", MessageBoxButtons.OK);
-                    //return;
+                    MessageBox.Show("Fill in all missing fields correctly!", "Confirm!", MessageBoxButtons.OK);
                 }
-
-                var confirmResult = MessageBox.Show("Are you sure you want to continue?", "Confirm!", MessageBoxButtons.YesNo);
-                if (confirmResult == DialogResult.Yes)
+                else
                 {
-                    File.WriteAllText("saveDownloadUri", textBoxUrl.Text);
-
-                    // downloading files from Mega to download directory
-                    await Megaupload.DownloadFolderAsync(textBoxDownloadDirectory.Text, textBoxUrl.Text, richTextReport);
-
-                    var dir = new DirectoryInfo(textBoxDownloadDirectory.Text);
-                    var files = dir.GetFiles("*", SearchOption.AllDirectories);
-
-                    // extracting files to game directory
-                    foreach (var file in files)
+                    var checkResult = CheckDirectoriesAreFilledCorrectly();
+                    if (checkResult != "")
                     {
-                        if (file.Extension == ".zip")
-                        {
-                            var zipExtractor = new ZipExtractor(textBoxGameDirectory.Text, textBoxDocumentsDirectory.Text, richTextReport);
-                            zipExtractor.ExtractZipFile(file.Name, file.FullName);
-                        }
+                        MessageBox.Show(checkResult, "Confirm!", MessageBoxButtons.OK);
+                        //return;
                     }
 
-                    // adding game directory to WitcherScriptMerger.exe.config
-                    FileModificator.ModifyWitcherScriptMerger(textBoxGameDirectory.Text, richTextReport);
+                    var confirmResult = MessageBox.Show("Are you sure you want to continue?", "Confirm!", MessageBoxButtons.YesNo);
+                    if (confirmResult == DialogResult.Yes)
+                    {
+                        // downloading files from Mega to download directory
+                        await Megaupload.DownloadFolderAsync(textBoxDownloadDirectory.Text, textBoxUrl.Text, richTextReport);
 
-                    richTextReport.Text += Environment.NewLine + $"The installation process is complete!";
+                        var dir = new DirectoryInfo(textBoxDownloadDirectory.Text);
+                        var files = dir.GetFiles("*", SearchOption.AllDirectories);
+
+                        // extracting files to game directory
+                        foreach (var file in files)
+                        {
+                            if (file.Extension == ".zip")
+                            {
+                                var zipExtractor = new ZipExtractor(textBoxGameDirectory.Text, textBoxDocumentsDirectory.Text, richTextReport);
+                                zipExtractor.ExtractZipFile(file.Name, file.FullName);
+                            }
+                        }
+
+                        // adding game directory to WitcherScriptMerger.exe.config
+                        FileModificator.ModifyWitcherScriptMerger(textBoxGameDirectory.Text, richTextReport);
+
+                        richTextReport.Text += Environment.NewLine + $"The installation process is complete!";
+                    }
                 }
             }
+            catch(Exception exception)
+            {
+                richTextReport.Text += Environment.NewLine + $"Unexpected error: {exception.Message}";
+            }
+            
         }
 
         private string CheckDirectoriesAreFilledCorrectly()
@@ -108,6 +114,11 @@ namespace FilesAndFolders
             {
                 textBox.Text = "";
             }
+        }
+
+        private void textBoxUrl_TextChanged(object sender, EventArgs e)
+        {
+            File.WriteAllText("saveDownloadUri", textBoxUrl.Text);
         }
     }
 }

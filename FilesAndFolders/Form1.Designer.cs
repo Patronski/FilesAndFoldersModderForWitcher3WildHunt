@@ -104,11 +104,11 @@
             this.buttonInfo.Text = "INFO";
             this.buttonInfo.UseVisualStyleBackColor = true;
             // 
-            // richTextBox1
+            // richTextReport
             // 
             this.richTextReport.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.richTextReport.Location = new System.Drawing.Point(45, 253);
-            this.richTextReport.Name = "richTextBox1";
+            this.richTextReport.Name = "richTextReport";
             this.richTextReport.Size = new System.Drawing.Size(375, 169);
             this.richTextReport.TabIndex = 14;
             this.richTextReport.Text = "";
@@ -155,6 +155,7 @@
             this.textBoxUrl.Name = "textBoxUrl";
             this.textBoxUrl.Size = new System.Drawing.Size(340, 20);
             this.textBoxUrl.TabIndex = 22;
+            this.textBoxUrl.TextChanged += new System.EventHandler(this.textBoxUrl_TextChanged);
             // 
             // label5
             // 
