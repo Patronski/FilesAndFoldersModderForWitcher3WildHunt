@@ -25,7 +25,7 @@ namespace FilesAndFolders
             buttonGameDIrectory.Enabled = false;
             textBoxUrl.Enabled = false;
             buttonStart.Enabled = false;
-
+            buttonInfo.Enabled = false;
 
             try
             {
@@ -39,7 +39,7 @@ namespace FilesAndFolders
                     if (checkResult != "")
                     {
                         MessageBox.Show(checkResult, "Confirm!", MessageBoxButtons.OK);
-                        //return;
+                        return;
                     }
 
                     var confirmResult = MessageBox.Show("Are you sure you want to continue?", "Confirm!", MessageBoxButtons.YesNo);
@@ -82,6 +82,7 @@ namespace FilesAndFolders
                 buttonGameDIrectory.Enabled = true;
                 textBoxUrl.Enabled = true;
                 buttonStart.Enabled = true;
+                buttonInfo.Enabled = true;
             }
         }
 
