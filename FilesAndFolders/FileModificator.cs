@@ -28,7 +28,7 @@ namespace Modpackinstaller
             }
             catch(Exception e)
             {
-                reportBox.Text += Environment.NewLine + $"WitcherScriptMerger file was not edited - " + e.Message;
+                reportBox.Text += $"WitcherScriptMerger file was not edited - " + e.Message + Environment.NewLine;
             }
         }
     }

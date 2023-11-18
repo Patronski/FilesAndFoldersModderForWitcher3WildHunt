@@ -1,9 +1,9 @@
 ﻿
 using Modpackinstaller;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FilesAndFolders
@@ -45,35 +45,26 @@ namespace FilesAndFolders
                     var confirmResult = MessageBox.Show("Are you sure you want to continue?", "Confirm!", MessageBoxButtons.YesNo);
                     if (confirmResult == DialogResult.Yes)
                     {
-                        // downloading files from Mega to download directory
-                        richTextReport.Text += Environment.NewLine + $"Starting download from Mega.";
+                        // downloading
+                        richTextReport.Text += $"Starting download from Mega." + Environment.NewLine;
                         var result = await Megaupload.DownloadFolderAsync(textBoxDownloadDirectory.Text, textBoxUrl.Text, richTextReport);
                         if (!result) { return; }
 
-                        richTextReport.Text += Environment.NewLine + $"Starting to extract files in game directory.";
-                        var dir = new DirectoryInfo(Path.Combine(textBoxDownloadDirectory.Text, "MOD PACK"));
-                        var files = dir.GetFiles("*", SearchOption.AllDirectories);
-
-                        // extracting files to game directory
-                        foreach (var file in files)
-                        {
-                            if (file.Extension == ".zip")
-                            {
-                                var zipExtractor = new ZipExtractor(textBoxGameDirectory.Text, textBoxDocumentsDirectory.Text, richTextReport);
-                                zipExtractor.ExtractZipFile(file.Name, file.FullName);
-                            }
-                        }
+                        // extracting
+                        richTextReport.Text += $"Starting to extract files in game directory." + Environment.NewLine;
+                        var zipExtractor = new ZipExtractor(textBoxGameDirectory.Text, textBoxDocumentsDirectory.Text, richTextReport);
+                        zipExtractor.ExtractDirectory(Path.Combine(textBoxDownloadDirectory.Text, "MOD ARCHIVE"));
 
                         // adding game directory to WitcherScriptMerger.exe.config
                         FileModificator.ModifyWitcherScriptMerger(textBoxGameDirectory.Text, richTextReport);
 
-                        richTextReport.Text += Environment.NewLine + $"The installation process is complete!";
+                        richTextReport.Text += $"The installation process is complete!" + Environment.NewLine;
                     }
                 }
             }
             catch (Exception exception)
             {
-                richTextReport.Text += Environment.NewLine + $"Unexpected error: {exception.Message}";
+                richTextReport.Text += $"Unexpected error: {exception.Message}" + Environment.NewLine;
             }
             finally
             {
@@ -145,6 +136,11 @@ namespace FilesAndFolders
             richTextReport.SelectionStart = richTextReport.Text.Length;
             // scroll it automatically
             richTextReport.ScrollToCaret();
+        }
+
+        private void buttonInfo_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://sites.google.com/view/the-witcher-3-teamy-mod-list");
         }
     }
 }

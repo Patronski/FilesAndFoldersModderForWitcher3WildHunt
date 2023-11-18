@@ -21,25 +21,30 @@ namespace FilesAndFolders
             {
                 MegaApiClient mega = new MegaApiClient();
                 await mega.LoginAnonymousAsync();
-                reportBox.Text += Environment.NewLine + "Connecting to the host ...";
+                reportBox.Text += "Connecting to the host ..." + Environment.NewLine;
 
                 Uri folderLink = new Uri(urlMega);
 
-                IEnumerable<INode> nodes = mega.GetNodesFromLink(folderLink);
-                reportBox.Text += Environment.NewLine + "received information";
+                IEnumerable<INode> nodes = await mega.GetNodesFromLinkAsync(folderLink);
+                reportBox.Text += "received information" + Environment.NewLine;
 
                 foreach (INode node in nodes.Where(x => x.Type == NodeType.File))
                 {
-                    string parents = await GetParents(node, nodes);
+                    string parents = GetParents(node, nodes);
                     var downloadSubFolder = downloadFolder + "\\" + parents;
                     Directory.CreateDirectory(downloadSubFolder);
-                    Console.WriteLine($"Downloading {downloadSubFolder}\\{node.Name}");
 
                     var downloadedFile = Path.Combine(downloadSubFolder, node.Name);
                     if (!File.Exists(downloadedFile))
                     {
+                        DateTime dt1 = DateTime.UtcNow;
+
                         await mega.DownloadFileAsync(node, downloadedFile);
-                        reportBox.Text += Environment.NewLine + $"downloaded file - {node.Name}";
+
+                        DateTime dt2 = DateTime.UtcNow;
+                        var dSpeed = Math.Round((node.Size / 1024) / (dt2 - dt1).TotalSeconds, 2);
+                        dSpeed = (float)System.Math.Round(dSpeed, 1);
+                        reportBox.Text += $"downloaded file - {node.Name} - ({node.Size / 1024}KB) ({String.Format("{0:0.0}", dSpeed)}KB/s)" + Environment.NewLine;
                     }
                 }
 
@@ -48,17 +53,17 @@ namespace FilesAndFolders
             }
             catch(FormatException ex)
             {
-                reportBox.Text += Environment.NewLine + "Error: Url is not correct!";
+                reportBox.Text += "Error: Url is not correct!" + Environment.NewLine;
                 return false;
             }
             catch(Exception ex)
             {
-                reportBox.Text += Environment.NewLine + "Error: " + ex.Message;
+                reportBox.Text += "Error: " + ex.Message + Environment.NewLine;
                 return false;
             }
         }
 
-        private static async Task<string> GetParents(INode node, IEnumerable<INode> nodes)
+        private static string GetParents(INode node, IEnumerable<INode> nodes)
         {
 
             List<string> parents = new List<string>();
@@ -70,6 +75,13 @@ namespace FilesAndFolders
             }
 
             return string.Join("\\", parents);
+        }
+
+        private static async Task SaveFileStream(String path, Stream stream)
+        {
+            var fileStream = new FileStream(path, FileMode.Create, FileAccess.Write);
+            await stream.CopyToAsync(fileStream);
+            fileStream.Dispose();
         }
     }
 }

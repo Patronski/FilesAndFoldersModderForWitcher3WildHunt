@@ -103,13 +103,15 @@
             this.buttonInfo.TabIndex = 13;
             this.buttonInfo.Text = "INFO";
             this.buttonInfo.UseVisualStyleBackColor = true;
+            this.buttonInfo.Click += new System.EventHandler(this.buttonInfo_Click);
             // 
             // richTextReport
             // 
             this.richTextReport.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.richTextReport.Location = new System.Drawing.Point(45, 253);
             this.richTextReport.Name = "richTextReport";
-            this.richTextReport.Size = new System.Drawing.Size(375, 169);
+            this.richTextReport.ReadOnly = true;
+            this.richTextReport.Size = new System.Drawing.Size(375, 174);
             this.richTextReport.TabIndex = 14;
             this.richTextReport.Text = "";
             this.richTextReport.TextChanged += new System.EventHandler(this.richTextReport_TextChanged);
