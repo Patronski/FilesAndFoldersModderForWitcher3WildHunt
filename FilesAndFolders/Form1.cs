@@ -53,7 +53,7 @@ namespace FilesAndFolders
                         // extracting
                         richTextReport.Text += $"Starting to extract files in game directory." + Environment.NewLine;
                         var zipExtractor = new ZipExtractor(textBoxGameDirectory.Text, textBoxDocumentsDirectory.Text, richTextReport);
-                        zipExtractor.ExtractDirectory(Path.Combine(textBoxDownloadDirectory.Text, "MOD ARCHIVE"));
+                        zipExtractor.ExtractDirectory(Path.Combine(textBoxDownloadDirectory.Text, textBoxModDirectory.Text));
 
                         // adding game directory to WitcherScriptMerger.exe.config
                         FileModificator.ModifyWitcherScriptMerger(textBoxGameDirectory.Text, richTextReport);
@@ -90,7 +90,7 @@ namespace FilesAndFolders
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Size = new Size(477, 543);
+            Size = new Size(477, 599);
             if (File.Exists("saveDownloadUri"))
             {
                 textBoxUrl.Text = File.ReadAllText("saveDownloadUri");

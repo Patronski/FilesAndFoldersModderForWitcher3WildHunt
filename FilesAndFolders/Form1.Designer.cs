@@ -48,6 +48,8 @@
             this.buttonDocumentsDirectory = new System.Windows.Forms.Button();
             this.buttonDownloadDirectory = new System.Windows.Forms.Button();
             this.buttonGameDIrectory = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxModDirectory = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,7 +58,7 @@
             this.buttonStart.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonStart.Location = new System.Drawing.Point(340, 453);
+            this.buttonStart.Location = new System.Drawing.Point(340, 512);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(80, 25);
             this.buttonStart.TabIndex = 0;
@@ -72,7 +74,7 @@
             // textBoxGameDirectory
             // 
             this.textBoxGameDirectory.Enabled = false;
-            this.textBoxGameDirectory.Location = new System.Drawing.Point(45, 143);
+            this.textBoxGameDirectory.Location = new System.Drawing.Point(45, 202);
             this.textBoxGameDirectory.Name = "textBoxGameDirectory";
             this.textBoxGameDirectory.Size = new System.Drawing.Size(340, 20);
             this.textBoxGameDirectory.TabIndex = 5;
@@ -81,7 +83,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(42, 125);
+            this.label1.Location = new System.Drawing.Point(42, 184);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(285, 15);
             this.label1.TabIndex = 9;
@@ -97,7 +99,7 @@
             this.buttonInfo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonInfo.Location = new System.Drawing.Point(45, 453);
+            this.buttonInfo.Location = new System.Drawing.Point(45, 512);
             this.buttonInfo.Name = "buttonInfo";
             this.buttonInfo.Size = new System.Drawing.Size(80, 25);
             this.buttonInfo.TabIndex = 13;
@@ -108,7 +110,7 @@
             // richTextReport
             // 
             this.richTextReport.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.richTextReport.Location = new System.Drawing.Point(45, 253);
+            this.richTextReport.Location = new System.Drawing.Point(45, 312);
             this.richTextReport.Name = "richTextReport";
             this.richTextReport.ReadOnly = true;
             this.richTextReport.Size = new System.Drawing.Size(375, 174);
@@ -119,7 +121,7 @@
             // textBoxDownloadDirectory
             // 
             this.textBoxDownloadDirectory.Enabled = false;
-            this.textBoxDownloadDirectory.Location = new System.Drawing.Point(45, 90);
+            this.textBoxDownloadDirectory.Location = new System.Drawing.Point(45, 149);
             this.textBoxDownloadDirectory.Name = "textBoxDownloadDirectory";
             this.textBoxDownloadDirectory.Size = new System.Drawing.Size(340, 20);
             this.textBoxDownloadDirectory.TabIndex = 15;
@@ -128,7 +130,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(42, 72);
+            this.label4.Location = new System.Drawing.Point(42, 131);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(194, 15);
             this.label4.TabIndex = 17;
@@ -138,7 +140,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(42, 177);
+            this.label3.Location = new System.Drawing.Point(42, 236);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(197, 15);
             this.label3.TabIndex = 21;
@@ -147,7 +149,7 @@
             // textBoxDocumentsDirectory
             // 
             this.textBoxDocumentsDirectory.Enabled = false;
-            this.textBoxDocumentsDirectory.Location = new System.Drawing.Point(45, 195);
+            this.textBoxDocumentsDirectory.Location = new System.Drawing.Point(45, 254);
             this.textBoxDocumentsDirectory.Name = "textBoxDocumentsDirectory";
             this.textBoxDocumentsDirectory.Size = new System.Drawing.Size(340, 20);
             this.textBoxDocumentsDirectory.TabIndex = 19;
@@ -174,7 +176,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(42, 235);
+            this.label6.Location = new System.Drawing.Point(42, 294);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(78, 15);
             this.label6.TabIndex = 24;
@@ -185,7 +187,7 @@
             this.buttonDocumentsDirectory.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonDocumentsDirectory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDocumentsDirectory.Image = ((System.Drawing.Image)(resources.GetObject("buttonDocumentsDirectory.Image")));
-            this.buttonDocumentsDirectory.Location = new System.Drawing.Point(391, 191);
+            this.buttonDocumentsDirectory.Location = new System.Drawing.Point(391, 250);
             this.buttonDocumentsDirectory.Name = "buttonDocumentsDirectory";
             this.buttonDocumentsDirectory.Size = new System.Drawing.Size(29, 27);
             this.buttonDocumentsDirectory.TabIndex = 20;
@@ -197,7 +199,7 @@
             this.buttonDownloadDirectory.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonDownloadDirectory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDownloadDirectory.Image = ((System.Drawing.Image)(resources.GetObject("buttonDownloadDirectory.Image")));
-            this.buttonDownloadDirectory.Location = new System.Drawing.Point(391, 86);
+            this.buttonDownloadDirectory.Location = new System.Drawing.Point(391, 145);
             this.buttonDownloadDirectory.Name = "buttonDownloadDirectory";
             this.buttonDownloadDirectory.Size = new System.Drawing.Size(29, 27);
             this.buttonDownloadDirectory.TabIndex = 16;
@@ -209,19 +211,38 @@
             this.buttonGameDIrectory.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonGameDIrectory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonGameDIrectory.Image = ((System.Drawing.Image)(resources.GetObject("buttonGameDIrectory.Image")));
-            this.buttonGameDIrectory.Location = new System.Drawing.Point(391, 139);
+            this.buttonGameDIrectory.Location = new System.Drawing.Point(391, 198);
             this.buttonGameDIrectory.Name = "buttonGameDIrectory";
             this.buttonGameDIrectory.Size = new System.Drawing.Size(29, 27);
             this.buttonGameDIrectory.TabIndex = 4;
             this.buttonGameDIrectory.UseVisualStyleBackColor = true;
             this.buttonGameDIrectory.Click += new System.EventHandler(this.buttonGameDIrectory_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(42, 74);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(185, 15);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "Name of the mod main directory:";
+            // 
+            // textBoxModDirectory
+            // 
+            this.textBoxModDirectory.Location = new System.Drawing.Point(45, 92);
+            this.textBoxModDirectory.Name = "textBoxModDirectory";
+            this.textBoxModDirectory.Size = new System.Drawing.Size(340, 20);
+            this.textBoxModDirectory.TabIndex = 25;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(461, 504);
+            this.ClientSize = new System.Drawing.Size(461, 560);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBoxModDirectory);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBoxUrl);
@@ -269,6 +290,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBoxUrl;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxModDirectory;
     }
 }
 
