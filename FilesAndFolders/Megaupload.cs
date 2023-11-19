@@ -54,7 +54,7 @@ namespace FilesAndFolders
             catch(FormatException ex)
             {
                 reportBox.Text += "Error: Url is not correct!" + Environment.NewLine;
-                return false;
+                return true;
             }
             catch(Exception ex)
             {
