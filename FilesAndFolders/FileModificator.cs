@@ -13,23 +13,41 @@ namespace Modpackinstaller
     {
         public static void ModifyWitcherScriptMerger(string gameDirectory, RichTextBox reportBox)
         {
+            var fileName = gameDirectory + @"\Witcher Script Merger\WitcherScriptMerger.exe.config";
+            var isSuccess = TryEditFile(gameDirectory, fileName);
+            if (!isSuccess)
+            {
+                fileName = gameDirectory + @"\Witcher Script Merger\WitcherScriptMerger.dll.config";
+                isSuccess = TryEditFile(gameDirectory, fileName);
+                if (!isSuccess)
+                {
+                    reportBox.Text += $"WitcherScriptMerger file was not edited - " + Environment.NewLine;
+                }
+            }
+        }
+
+        private static bool TryEditFile(string gameDirectory, string fileName)
+        {
             try
             {
-                var fileName = gameDirectory + @"\Witcher Script Merger\WitcherScriptMerger.exe.config";
                 var doc = XDocument.Load(fileName);
 
                 var child = doc.Root.Element("appSettings").FirstNode as XElement;
                 if (child != null)
                 {
                     child.SetAttributeValue("value", gameDirectory);
+                    doc.Save(fileName);
+
+                    return true;
                 }
 
-                doc.Save(fileName);
             }
-            catch(Exception e)
+            catch
             {
-                reportBox.Text += $"WitcherScriptMerger file was not edited - " + e.Message + Environment.NewLine;
+                return false;
             }
+
+            return false;
         }
     }
 }
